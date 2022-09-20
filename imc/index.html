@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+    <style>
+
+        body{
+            background-image: linear-gradient(to bottom, rgb(209, 55, 176), rgb(0, 0, 0));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1{
+            font-size: 2vw;
+            color: white;
+            text-align: center;
+        }
+
+        #sect{
+            display: inline-block;
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.418);
+            border-radius: 5px;
+        }
+
+        #peso, #altura{
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 1px;
+            width: 150px;
+            height: 40px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.336);
+        }
+        p{
+            font-size: 2vw;
+            color: white;
+        }
+       button{
+        margin-top: 10px;
+        width: 100px;
+        height: 30px;
+        color: white;
+        background: black;
+       }
+
+       #res{
+        background: rgba(0, 0, 0, 0.466);
+        
+       }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <h1 id="aga">Medidor de IMC</h1>
+    <section id="sect">
+        <p>peso</p>
+        <input type="number" name="peso" id="peso">
+        <p>Altura: </p>
+        <input type="number" name="altura" id="altura"> <br>
+        <button onclick="calcular()" id="ca">Calcular</button>
+        <p id="res"></p>
+    </section>
+
+
+    <script>
+
+        function calcular(){
+            var p = document.getElementById('peso')   
+            var a = document.getElementById('altura')
+            var res = document.getElementById('res')
+
+            var pe = Number(p.value)
+            var al = Number(a.value)
+
+            var resultado = pe / (al*al)
+
+            res.innerHTML = `O seu IMC é: ${resultado.toFixed(1)}` 
+
+            if(res < 18.5){
+                res.innerHTML += '<P>Abaixo do peso</p>' 
+            }else if(res >= 18.5 && res <= 24.9){
+                res.innerHTML += '<p>Peso Normal</p>'
+            }else if(res >= 25 && res >= 29.9){
+                res.innerHTML += '<p>Sobrepeso</p>'
+            }else if(res >= 30 && res <= 34.9){
+                res.innerHTML += '<p>Obesidade Grau I</p>'
+            }else if(res >= 35 && res <= 33.9){
+                res.innerHTML += '<p>Obesidade Grau 2</p>'
+            }else{
+                res.innerHTML += '<p>Obesidade Grau 3</p>'
+            }
+
+        }   
+        
+    </script>
+
+
+
+    
+</body>
+</html>

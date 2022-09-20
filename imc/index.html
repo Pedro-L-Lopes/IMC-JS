@@ -11,6 +11,7 @@
             background-image: linear-gradient(to bottom, rgb(209, 55, 176), rgb(0, 0, 0));
             background-repeat: no-repeat;
             background-attachment: fixed;
+            text-align: center;
         }
 
         h1{
@@ -22,21 +23,28 @@
         #sect{
             display: inline-block;
             margin: auto;
-            width: 500px;
-            height: 500px;
-            background: rgba(0, 0, 0, 0.418);
+            width: 400px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.418);
             border-radius: 5px;
         }
 
         #peso, #altura{
             margin: auto;
+            color: white;
+            margin-top: 10px;
             justify-content: center;
             align-items: center;
-            border: 1px solid black;
+            background: rgba(0, 0, 0, 0.651);
             border-radius: 1px;
             width: 150px;
             height: 40px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.336);
+            border: none;
+            border-radius: 2px;
+            
+        }
+        #peso:hover{
+            
         }
         p{
             font-size: 2vw;
@@ -47,14 +55,50 @@
         width: 100px;
         height: 30px;
         color: white;
-        background: black;
+        background: rgba(0, 0, 0, 0.445);
        }
 
        #res{
-        background: rgba(0, 0, 0, 0.466);
+        background: rgba(255, 255, 255, 0.418);
+        border-radius: 2px;
         
        }
 
+       @keyframes animacao{
+        0%{
+            transform: translate(0vh);
+        }
+        50%{
+            transform: translateX(100vh) translatey(50vh);
+        }
+        75%{
+            transform: translateX(150vh) translatey(-100vh);
+        }
+        100%{
+            transform: translate(0vh);
+        }
+       }
+
+       #caixa{
+        transform: translateY(0px);
+        animation: animacao 2s infinite;
+       }
+
+       #caixa{
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background-image: url(d-removebg-preview.png);
+        background-position: center center;
+       }
+
+       #pp{
+        display: none;
+       }
+
+       #caixa:hover + #pp{
+            display: block;
+       }
 
 
 
@@ -62,12 +106,15 @@
 </head>
 <body>
 
-    <h1 id="aga">Medidor de IMC</h1>
+    <div id="caixa"></div>
+    <p id="pp">Angelo is gay </p>
+
+    <h1>Medidor de IMC</h1>
     <section id="sect">
-        <p>peso</p>
+        <label for="peso">Peso</label>
         <input type="number" name="peso" id="peso">
-        <p>Altura: </p>
-        <input type="number" name="altura" id="altura"> <br>
+        <label for="altura">altura</label>
+        <input type="number" name="altura" id="altura"><br>
         <button onclick="calcular()" id="ca">Calcular</button>
         <p id="res"></p>
     </section>
@@ -87,18 +134,20 @@
 
             res.innerHTML = `O seu IMC é: ${resultado.toFixed(1)}` 
 
-            if(res < 18.5){
+            if(resultado < 18.5){
                 res.innerHTML += '<P>Abaixo do peso</p>' 
-            }else if(res >= 18.5 && res <= 24.9){
+            }else if(resultado <= 24.9){
                 res.innerHTML += '<p>Peso Normal</p>'
-            }else if(res >= 25 && res >= 29.9){
+            }else if(resultado >= 29.9){
                 res.innerHTML += '<p>Sobrepeso</p>'
-            }else if(res >= 30 && res <= 34.9){
+            }else if(resultado <= 34.9){
                 res.innerHTML += '<p>Obesidade Grau I</p>'
-            }else if(res >= 35 && res <= 33.9){
+            }else if(resultado <= 33.9){
                 res.innerHTML += '<p>Obesidade Grau 2</p>'
-            }else{
+            }else if(resultado > 33.9){
                 res.innerHTML += '<p>Obesidade Grau 3</p>'
+            }else{
+                alert("Dados Invalidos!!")
             }
 
         }   
